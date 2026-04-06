@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportX – توقعات كرة القدم وكرة السلة من محللين خبراء</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --gold:   #FFD700;
+      --gold2:  #FFA500;
+      --gold-dim: rgba(255,215,0,.15);
+      --gold-glow: rgba(255,215,0,.25);
+      --bg:     #0d0d0d;
+      --bg2:    #111;
+      --bg3:    #181818;
+      --purple: #6c21b8;
+      --purple2:#8432d8;
+      --white:  #fff;
+      --gray:   #aaa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      direction: rtl;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── NAVBAR ───────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; inset-inline: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 40px;
+      background: rgba(10,10,10,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-dim);
+      overflow: visible;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-svg { width: 48px; height: 48px; }
+
+    /* Character in nav logo area */
+    .nav-char-wrap {
+      position: relative;
+      display: flex; align-items: flex-end;
+      height: 68px;
+      overflow: visible;
+    }
+    .nav-char-avatar {
+      height: 90px;          /* pokes nicely above nav bar */
+      width: auto;
+      object-fit: contain;
+      object-position: center top;
+      filter: drop-shadow(0 0 12px rgba(255,215,0,.55))
+              drop-shadow(0 6px 18px rgba(108,33,184,.4));
+      flex-shrink: 0;
+      animation: navCharFloat 4s ease-in-out infinite;
+    }
+    @keyframes navCharFloat {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(-5px); }
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 16px; font-weight: 600; color: var(--white);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    /* ─── HAMBURGER ─────────────────────────────────────────────── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 3px;
+      background: var(--gold); border-radius: 2px; transition: all .3s;
+    }
+    .hamburger.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.is-open span:nth-child(2) { opacity: 0; }
+    .hamburger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    .mobile-nav {
+      display: none; flex-direction: column;
+      background: rgba(8,8,8,.99);
+      border-bottom: 2px solid var(--gold-dim);
+      position: fixed; top: 70px; inset-inline: 0; z-index: 997;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 16px 28px; font-size: 17px; font-weight: 600;
+      border-bottom: 1px solid #1a1a1a; color: var(--white);
+      transition: color .2s, background .2s;
+    }
+    .mobile-nav a:hover { color: var(--gold); background: #111; }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 45% 70% at 74% 60%, rgba(255,215,0,.12) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 80% at 78% 30%, rgba(108,33,184,.15) 0%, transparent 60%),
+        linear-gradient(160deg, #0d0d0d 0%, #0f0800 60%, #0d0d0d 100%);
+      padding-top: 78px;
+      display: flex;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; opacity: .04; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cellipse cx='300' cy='200' rx='80' ry='80' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cline x1='300' y1='0' x2='300' y2='400' stroke='%23fff' stroke-width='2'/%3E%3Crect x='0' y='150' width='80' height='100' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Crect x='520' y='150' width='80' height='100' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") center/cover;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 30px 60px 0;
+      display: flex;
+      align-items: flex-end;
+      position: relative; z-index: 1;
+      min-height: calc(100vh - 78px);
+    }
+
+    /* RTL flex: hero-text (first) → RIGHT, hero-char (second) → LEFT */
+    .hero-text {
+      flex: 1;
+      padding-bottom: 90px;
+      align-self: center;
+      position: relative; z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 78px; font-weight: 900; font-style: italic;
+      line-height: 1.06; margin-bottom: 20px;
+      text-shadow: 0 0 60px rgba(255,215,0,.22);
+    }
+    .hero h1 .highlight { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 20px; color: var(--gray);
+      margin-bottom: 46px; line-height: 1.65; font-weight: 400;
+    }
+
+    .sport-btns { display: flex; flex-direction: column; gap: 14px; max-width: 430px; }
+
+    .sport-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 26px; border-radius: 50px; border: none;
+      font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: 700;
+      cursor: pointer; transition: transform .2s, filter .2s; text-decoration: none;
+    }
+    .sport-btn .si { display: flex; align-items: center; gap: 14px; }
+    .sport-btn .emoji { font-size: 26px; }
+    .sport-btn .arr { font-size: 22px; line-height: 1; }
+
+    .btn-football   { background: var(--purple);  color: #fff; }
+    .btn-basketball { background: var(--purple);  color: #fff; }
+    .btn-analysts   { background: var(--gold);    color: #000; }
+
+    .sport-btn:hover { transform: translateX(-6px); filter: brightness(1.15); }
+
+    /* ─── HERO CHARACTER ────────────────────────────────────────── */
+    .hero-char {
+      width: 460px;
+      flex-shrink: 0;
+      align-self: flex-end;
+      position: relative; z-index: 3;
+      animation: charFloat 5s ease-in-out infinite;
+    }
+    .hero-char img {
+      width: 100%; height: auto; display: block;
+      filter: drop-shadow(0 30px 50px rgba(255,215,0,.22)) drop-shadow(0 0 30px rgba(108,33,184,.2));
+    }
+
+    /* Soft glow behind character */
+    .hero-char::before {
+      content: '';
+      position: absolute;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,.14) 0%, transparent 70%);
+      left: 50%; top: 35%; transform: translate(-50%,-50%);
+      pointer-events: none; z-index: -1;
+    }
+
+    @keyframes charFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-16px); }
+    }
+
+    /* ─── TICKER ────────────────────────────────────────────────── */
+    .ticker {
+      background: var(--gold);
+      padding: 13px 0; overflow: hidden;
+      border-top: 2px solid var(--gold2);
+      border-bottom: 2px solid var(--gold2);
+    }
+    .ticker-track {
+      display: flex; gap: 80px;
+      animation: ticker 24s linear infinite;
+      white-space: nowrap; width: max-content;
+    }
+    .ticker-track span {
+      font-size: 15px; font-weight: 700; color: #000;
+      display: flex; align-items: center; gap: 10px;
+    }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ─── SECTION HEADER ────────────────────────────────────────── */
+    .sec-head {
+      display: flex; align-items: center;
+      margin-bottom: 50px; position: relative;
+    }
+    .sec-head::before {
+      content:''; position:absolute;
+      right:0; top:50%; transform:translateY(-50%);
+      height:4px; width:34%;
+      background:linear-gradient(to left, var(--gold), transparent);
+      border-radius:2px;
+    }
+    .sec-head::after {
+      content:''; position:absolute;
+      left:0; top:50%; transform:translateY(-50%);
+      height:4px; width:34%;
+      background:linear-gradient(to right, var(--gold), transparent);
+      border-radius:2px;
+    }
+    .sec-head h2 {
+      font-size: 46px; font-weight: 900; font-style: italic;
+      color: var(--white); text-align: center;
+      z-index:1; padding: 0 20px; width:100%;
+    }
+
+    /* ─── FEATURES STRIP ────────────────────────────────────────── */
+    .features { padding: 70px 60px; background: var(--bg2); }
+    .features-inner {
+      display: flex; align-items: center; gap: 50px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .features-grid {
+      flex: 1;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 22px;
+    }
+    .feature-card {
+      background: var(--bg3);
+      border-radius: 16px; padding: 26px 22px;
+      border: 1px solid var(--gold-dim);
+      text-align: center;
+      transition: border-color .3s, transform .3s;
+    }
+    .feature-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+    .feature-icon { font-size: 42px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 22px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
+    .feature-card p  { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+    /* Features character pose */
+    .features-char {
+      width: 200px; flex-shrink: 0;
+    }
+    .features-char img {
+      width: 100%; height: auto; display: block;
+      filter: drop-shadow(0 18px 32px rgba(255,215,0,.18));
+    }
+
+    /* ─── CTA BAND ──────────────────────────────────────────────── */
+    .cta-band { padding: 70px 60px; background: var(--bg); }
+    .cta-inner {
+      max-width: 760px; margin: 0 auto;
+      background: linear-gradient(135deg,#1a0d00,#241500);
+      border: 1px solid rgba(255,215,0,.25);
+      border-radius: 22px; padding: 60px 40px; text-align: center;
+      transform: rotate(-2.5deg);
+    }
+    .cta-body { transform: rotate(2.5deg); }
+    .cta-inner h2 {
+      font-size: 52px; font-weight: 900; font-style: italic;
+      color: var(--gold); line-height: 1.15; margin-bottom: 14px;
+    }
+    .cta-inner p { font-size: 17px; color: var(--gray); margin-bottom: 28px; }
+    .btn-cta {
+      display: inline-block; background: var(--gold); color: #000;
+      border: none; padding: 16px 52px; border-radius: 40px;
+      font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: 900;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .btn-cta:hover { background: var(--gold2); transform: scale(1.03); }
+
+    /* ─── LATEST TIPS SLIDER ────────────────────────────────────── */
+    .latest-tip { padding: 80px 60px; background: var(--bg2); }
+
+    .tips-slider-wrap {
+      max-width: 1100px; margin: 0 auto; position: relative;
+    }
+
+    .tips-viewport {
+      overflow: hidden; border-radius: 14px;
+    }
+
+    .tips-track {
+      display: flex; gap: 18px;
+      direction: ltr;
+      transition: transform 0.44s cubic-bezier(.4,0,.2,1);
+    }
+
+    .tip-slide-card {
+      flex: 0 0 calc((100% - 36px) / 3);
+      min-width: 0;
+      background: var(--bg3); border-radius: 14px;
+      border: 1px solid var(--gold-dim); overflow: hidden;
+      position: relative; direction: rtl;
+      box-shadow: 0 0 24px rgba(255,215,0,.05);
+      transition: border-color .3s;
+    }
+    .tip-slide-card:hover { border-color: var(--gold); }
+
+    .tsc-match {
+      background: #1e1e1e;
+      padding: 16px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .tsc-team { display:flex; flex-direction:column; align-items:center; gap:6px; min-width: 60px; }
+    .tsc-flag {
+      width: 52px; height: 36px; border-radius: 6px;
+      background: #2a2a2a;
+      display: flex; align-items: center; justify-content: center; font-size: 24px;
+    }
+    .tsc-team-name { font-size: 12px; color: var(--gray); font-weight: 600; text-align: center; }
+    .tsc-mid { text-align: center; flex: 1; min-width: 0; }
+    .tsc-league { font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 4px; letter-spacing: .3px; }
+    .tsc-vs { font-size: 20px; font-weight: 900; }
+    .tsc-time { font-size: 11px; color: #666; margin-top: 3px; }
+
+    .tsc-body {
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; flex-wrap: wrap;
+    }
+    .tsc-tip-label {
+      background: var(--gold); color: #000;
+      padding: 5px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 700; white-space: nowrap;
+    }
+    .tsc-prediction { font-size: 15px; font-weight: 800; font-style: italic; flex: 1; text-align: center; min-width: 80px; }
+    .tsc-odds-box { text-align: center; }
+    .tsc-odds-label { font-size: 11px; color: #666; }
+    .tsc-odds-val { font-size: 24px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .tsc-sport-badge {
+      background: var(--purple); color: #fff;
+      padding: 5px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 700; white-space: nowrap;
+    }
+
+    /* ─── WON STAMP – Enhanced ──────────────────────────────────── */
+    .won-stamp {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      font-size: 32px; font-weight: 900;
+      color: #00c853; border: 4px solid #00c853;
+      padding: 5px 14px; border-radius: 8px;
+      opacity: 0.93; letter-spacing: 3px; font-style: italic;
+      text-shadow: 0 2px 12px rgba(0,200,83,.8), 0 0 28px rgba(0,200,83,.5);
+      box-shadow: 0 0 30px rgba(0,200,83,.55), 0 4px 18px rgba(0,200,83,.38), inset 0 0 14px rgba(0,200,83,.1);
+      pointer-events: none; z-index: 10;
+      background: rgba(0,8,3,.32);
+    }
+
+    /* Slider nav */
+    .tips-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 28px;
+    }
+    .tips-nav-btn {
+      background: var(--bg3); border: 2px solid var(--gold-dim); color: var(--white);
+      width: 48px; height: 48px; border-radius: 50%;
+      font-size: 22px; font-weight: 700; cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tips-nav-btn:hover:not(:disabled) { background: var(--gold); border-color: var(--gold); color: #000; }
+    .tips-nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .tips-dots { display: flex; gap: 8px; align-items: center; }
+    .tips-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #333; cursor: pointer; border: none;
+      transition: background .25s, transform .25s;
+    }
+    .tips-dot.active { background: var(--gold); transform: scale(1.35); }
+
+    /* ─── حين نتوقع، نُصيب ──────────────────────────────────────── */
+    .accuracy { padding: 80px 60px; background: var(--bg); }
+    .acc-sub {
+      text-align: center; font-size: 17px; color: var(--gray);
+      margin: -36px auto 52px; line-height: 1.75;
+      max-width: 620px;
+    }
+    .acc-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .acc-card {
+      background: var(--bg3); border-radius: 18px; overflow: hidden;
+      border: 1px solid var(--gold-dim);
+      transition: transform .28s, border-color .28s;
+    }
+    .acc-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .acc-card-header {
+      background: linear-gradient(135deg, #1c1000, #261c00);
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+    .acc-icon { font-size: 26px; }
+    .acc-verified {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 11px; color: #00c853; font-weight: 700; letter-spacing: .4px;
+    }
+    .acc-card-body { padding: 22px 20px; }
+    .acc-big {
+      font-size: 46px; font-weight: 900; color: var(--gold);
+      line-height: 1; margin-bottom: 10px;
+      display: flex; align-items: baseline; gap: 5px;
+    }
+    .acc-unit { font-size: 18px; font-weight: 700; color: var(--gold2); }
+    .acc-label { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .acc-desc { font-size: 13px; color: var(--gray); line-height: 1.75; }
+    .acc-tag {
+      display: inline-block; margin-top: 14px;
+      background: var(--purple); color: #fff;
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 11px; font-weight: 700;
+    }
+
+    /* ─── PLANS ─────────────────────────────────────────────────── */
+    .plans { padding: 80px 60px; background: var(--bg2); }
+    .plans-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .plan-card {
+      background: var(--bg3); border-radius: 22px; overflow: hidden;
+      border: 2px solid var(--gold-dim);
+      transition: transform .3s, border-color .3s;
+      display: flex; flex-direction: column;
+    }
+    .plan-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+    .plan-card.featured { border-color: var(--gold); }
+    .plan-top {
+      background: linear-gradient(135deg,#1e1e1e,#252525);
+      padding: 30px 24px 20px; text-align: center;
+    }
+    .plan-icon { font-size: 50px; margin-bottom: 12px; }
+    .plan-name { font-size: 24px; font-weight: 900; color: var(--gold); }
+    .plan-period { font-size: 14px; color: var(--gray); margin-top: 6px; }
+    .plan-price-area {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--gold-dim); text-align: center;
+    }
+    .plan-price { display: flex; align-items: baseline; justify-content: center; gap: 5px; }
+    .pp-amount { font-size: 50px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .pp-curr   { font-size: 22px; font-weight: 700; color: var(--gold); }
+    .pp-per    { font-size: 15px; color: var(--gray); }
+    .plan-feats { padding: 20px 24px; flex: 1; }
+    .plan-feats ul { list-style: none; }
+    .plan-feats li {
+      padding: 10px 0; font-size: 15px; color: #ccc;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .plan-feats li:last-child { border-bottom: none; }
+    .plan-feats li::before { content: '✓'; color: var(--gold); font-weight: 900; font-size: 16px; }
+    .plan-cta-area { padding: 20px 24px 28px; text-align: center; }
+    .btn-plan {
+      display: block; background: var(--gold); color: #000; border: none;
+      padding: 15px 0; width: 100%; border-radius: 30px;
+      font-family: 'Cairo', sans-serif; font-size: 17px; font-weight: 900;
+      cursor: pointer; transition: all .2s; text-align: center;
+      text-decoration: none;
+    }
+    .btn-plan:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    /* ─── LOST STAMP ────────────────────────────────────────────── */
+    .lost-stamp {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      font-size: 32px; font-weight: 900;
+      color: #ff5252; border: 4px solid #ff5252;
+      padding: 5px 14px; border-radius: 8px;
+      opacity: 0.93; letter-spacing: 3px; font-style: italic;
+      text-shadow: 0 2px 12px rgba(255,82,82,.8), 0 0 28px rgba(255,82,82,.5);
+      box-shadow: 0 0 30px rgba(255,82,82,.55), 0 4px 18px rgba(255,82,82,.38), inset 0 0 14px rgba(255,82,82,.1);
+      pointer-events: none; z-index: 10;
+      background: rgba(8,0,0,.32);
+    }
+
+    /* ─── CATCHES / RESULTS ARCHIVE ─────────────────────────────── */
+    .catches { padding: 80px 60px; background: var(--bg); }
+    .catches-head-sub {
+      text-align: center; color: var(--gray); font-size: 17px;
+      margin: -36px auto 44px; line-height: 1.7; max-width: 600px;
+    }
+    .catches-stats {
+      display: flex; justify-content: center; gap: 28px;
+      margin-bottom: 40px; flex-wrap: wrap;
+    }
+    .catch-stat {
+      background: var(--bg3); border: 1px solid var(--gold-dim);
+      border-radius: 14px; padding: 18px 32px; text-align: center;
+      min-width: 120px;
+    }
+    .catch-stat-val { font-size: 34px; font-weight: 900; color: var(--gold); line-height: 1; }
+    .catch-stat-lbl { font-size: 13px; color: var(--gray); margin-top: 6px; }
+    .catch-filters {
+      display: flex; justify-content: center; gap: 12px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .catch-filter-btn {
+      background: var(--bg3); border: 1px solid var(--gold-dim);
+      color: var(--white); border-radius: 30px; padding: 10px 26px;
+      font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+    }
+    .catch-filter-btn:hover, .catch-filter-btn.active {
+      background: var(--gold); color: #000; border-color: var(--gold);
+    }
+    .catch-table-wrap {
+      max-width: 1100px; margin: 0 auto;
+      overflow-x: auto; border-radius: 18px;
+      border: 1px solid var(--gold-dim);
+    }
+    .catch-table {
+      width: 100%; border-collapse: collapse; font-size: 15px;
+    }
+    .catch-table th {
+      background: var(--bg2); color: var(--gold);
+      padding: 16px 18px; font-weight: 700; text-align: right;
+      border-bottom: 2px solid var(--gold-dim);
+      white-space: nowrap;
+    }
+    .catch-table td {
+      padding: 14px 18px; border-bottom: 1px solid #1a1a1a;
+      vertical-align: middle;
+    }
+    .catch-table tr:last-child td { border-bottom: none; }
+    .catch-table tbody tr { background: var(--bg3); transition: background .2s; }
+    .catch-table tbody tr:nth-child(even) { background: var(--bg2); }
+    .catch-table tbody tr:hover { background: rgba(255,215,0,.05); }
+    .catch-match-cell { display: flex; align-items: center; gap: 10px; }
+    .catch-flags { font-size: 20px; display: flex; align-items: center; gap: 2px; }
+    .catch-match-names { line-height: 1.4; }
+    .catch-match-name { font-weight: 700; font-size: 14px; }
+    .catch-match-en { font-size: 11px; color: #666; }
+    .catch-league-badge {
+      display: inline-block; background: rgba(108,33,184,.25); color: var(--purple2);
+      border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 600;
+      white-space: nowrap;
+    }
+    .catch-odds { font-weight: 900; color: var(--gold); font-size: 18px; }
+    .catch-prediction { font-weight: 600; }
+    .catch-date { color: var(--gray); font-size: 13px; white-space: nowrap; }
+    .catch-result-won {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(0,200,83,.15); color: #00c853;
+      border: 1px solid rgba(0,200,83,.3);
+      border-radius: 20px; padding: 5px 14px;
+      font-weight: 700; font-size: 13px; white-space: nowrap;
+    }
+    .catch-result-lost {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255,82,82,.12); color: #ff5252;
+      border: 1px solid rgba(255,82,82,.25);
+      border-radius: 20px; padding: 5px 14px;
+      font-weight: 700; font-size: 13px; white-space: nowrap;
+    }
+    .catches-pagination {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 28px; flex-wrap: wrap;
+    }
+    .catch-page-btn {
+      min-width: 36px; height: 36px; border-radius: 8px;
+      background: var(--bg3); border: 1px solid var(--gold-dim);
+      color: var(--white); font-family: 'Cairo', sans-serif;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: all .2s; display: flex; align-items: center; justify-content: center;
+      padding: 0 10px;
+    }
+    .catch-page-btn:hover, .catch-page-btn.active {
+      background: var(--gold); color: #000; border-color: var(--gold);
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    .faq { padding: 80px 60px; background: var(--bg2); }
+    .faq-list { max-width: 900px; margin: 0 auto; }
+    .faq-item {
+      background: var(--purple); border-radius: 14px;
+      margin-bottom: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .faq-q {
+      padding: 22px 26px;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; font-size: 18px; font-weight: 600; user-select: none;
+    }
+    .faq-q .faq-icon {
+      font-size: 26px; font-weight: 300; color: var(--gold);
+      transition: transform .3s; flex-shrink: 0; margin-right: 10px;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease; padding: 0 26px;
+    }
+    .faq-item.open .faq-a { max-height: 260px; padding: 12px 26px 22px; }
+    .faq-a p { font-size: 16px; color: #ddd; line-height: 1.8; }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid var(--gold-dim);
+      padding: 56px 60px 28px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 40px;
+      margin-bottom: 44px;
+    }
+    .fc-title { font-size: 18px; font-weight: 700; color: var(--gold); font-style: italic; margin-bottom: 20px; }
+    .fc-list { list-style: none; }
+    .fc-list li { margin-bottom: 12px; }
+    .fc-list a { font-size: 15px; color: var(--gray); transition: color .2s; }
+    .fc-list a:hover { color: var(--gold); }
+    .btn-wa {
+      background: #25D366; color: #fff; border: none;
+      padding: 12px 22px; border-radius: 26px;
+      font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: background .2s;
+    }
+    .btn-wa:hover { background: #1db954; }
+    .footer-social-title { font-size: 15px; font-weight: 700; color: var(--gold); font-style: italic; margin: 18px 0 10px; }
+    .foot-socials { display: flex; gap: 12px; }
+    .fsoc {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #1e1e1e; border: 1px solid #333;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer; transition: background .2s, border-color .2s;
+    }
+    .fsoc:hover { background: var(--gold); border-color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid #1e1e1e; padding-top: 26px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 14px; color: #555;
+    }
+    .footer-bottom .fb-brand { color: var(--gold); font-weight: 700; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
+    @media(max-width:1100px){
+      .catch-table th, .catch-table td { padding: 12px 14px; }
+    }
+
+    @media(max-width:960px){
+      .hero-char { width: 360px; }
+    }
+
+    @media(max-width:900px){
+      nav { padding: 10px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero { padding-top: 70px; }
+      .hero-inner {
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 24px 0;
+        min-height: calc(100vh - 70px);
+        justify-content: flex-start;
+        gap: 0;
+      }
+      .hero-text {
+        width: 100%; text-align: center;
+        padding-bottom: 40px; align-self: unset;
+      }
+      .sport-btns { max-width: 100%; margin: 0 auto; }
+      .hero h1 { font-size: 48px; }
+      .hero-sub { font-size: 17px; }
+      .hero-char {
+        width: 185px;
+        order: -1; align-self: center;
+        margin-bottom: 8px;
+        flex-shrink: 0;
+      }
+      .hero-char::before { display: none; }
+
+      .features { padding: 50px 20px; }
+      .features-inner { flex-direction: column; gap: 0; }
+      .features-grid { grid-template-columns: repeat(2,1fr); gap: 16px; width: 100%; }
+      .features-char { display: none; }
+
+      .latest-tip { padding: 50px 20px; }
+      .tip-slide-card { flex: 0 0 calc((100% - 18px) / 2) !important; }
+
+      .accuracy { padding: 50px 20px; }
+      .acc-grid { grid-template-columns: repeat(2,1fr); }
+      .acc-sub { margin-top: -24px; margin-bottom: 38px; }
+
+      .plans { padding: 50px 20px; }
+      .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+
+      .catches { padding: 50px 20px; }
+      .catch-table th, .catch-table td { padding: 10px 10px; font-size: 13px; }
+      .catch-flags { font-size: 16px; }
+
+      .faq { padding: 50px 20px; }
+      .cta-band { padding: 50px 20px; }
+
+      footer { padding: 50px 20px 24px; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); gap: 28px; }
+
+      .sec-head h2 { font-size: 34px; }
+      .sec-head::before, .sec-head::after { width: 22%; }
+    }
+
+    @media(max-width:580px){
+      .hero h1 { font-size: 36px; }
+      .hero-sub { font-size: 15px; }
+      .hero-char { width: 200px; }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .acc-grid { grid-template-columns: 1fr; }
+      .catches-stats { gap: 16px; }
+      .catch-stat { padding: 14px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+
+      .tip-slide-card { flex: 0 0 100% !important; }
+
+      .sec-head h2 { font-size: 27px; }
+      .cta-inner { padding: 40px 22px; }
+      .cta-inner h2 { font-size: 36px; }
+    }
+
+    @media(max-width:360px){
+      .catch-stat-val { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-char-wrap">
+      <img src="images/NO%20BG%20CHARACTER%20USE.png"
+           alt="SportX" class="nav-char-avatar" />
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#plans">خططنا</a></li>
+    <li><a href="#tips">التوقعات</a></li>
+    <li><a href="#catches">سجل النتائج</a></li>
+    <li><a href="#winnings">حين نتوقع</a></li>
+    <li><a href="#faq">اتصل بنا</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#tips"     onclick="closeMobileNav()">التوقعات</a>
+  <a href="#winnings" onclick="closeMobileNav()">حين نتوقع</a>
+  <a href="#catches" onclick="closeMobileNav()">سجل النتائج</a>
+  <a href="#plans"    onclick="closeMobileNav()">خططنا</a>
+  <a href="#faq"      onclick="closeMobileNav()">اتصل بنا</a>
+</nav>
+
+<!-- ═══════════════════ HERO ══════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Text side (RTL → appears on RIGHT on desktop) -->
+    <div class="hero-text">
+      <h1>
+        حان وقتك<br>
+        لتكون <span class="highlight">فائزاً!</span>
+      </h1>
+      <p class="hero-sub">تعال وشاهد ما يقوله محللونا عن المباريات القادمة</p>
+
+      <div class="sport-btns">
+        <a href="#tips" class="sport-btn btn-football">
+          <span class="si"><span class="emoji">⚽</span><span>كرة القدم</span></span>
+          <span class="arr">&#x2039;</span>
+        </a>
+        <a href="#tips" class="sport-btn btn-basketball">
+          <span class="si"><span class="emoji">🏀</span><span>كرة السلة</span></span>
+          <span class="arr">&#x2039;</span>
+        </a>
+        <a href="#catches" class="sport-btn btn-analysts">
+          <span class="si"><span class="emoji">📋</span><span>سجل النتائج</span></span>
+          <span class="arr">&#x2039;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Character side (RTL → appears on LEFT on desktop) -->
+    <div class="hero-char">
+      <img src="images/NO%20BG%20CHARACTER%20USE.png" alt="SportX Character" />
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ TICKER ════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>⚽ نصائح كرة القدم</span>
+    <span>🏀 نصائح كرة السلة</span>
+    <span>🏆 أكثر من 500 فوز موثق</span>
+    <span>📊 تحليل احترافي يومي</span>
+    <span>⭐ فريق من كبار المحللين</span>
+    <span>🎯 دقة عالية في التوقعات</span>
+    <span>⚽ نصائح كرة القدم</span>
+    <span>🏀 نصائح كرة السلة</span>
+    <span>🏆 أكثر من 500 فوز موثق</span>
+    <span>📊 تحليل احترافي يومي</span>
+    <span>⭐ فريق من كبار المحللين</span>
+    <span>🎯 دقة عالية في التوقعات</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ FEATURES ══════════════════════════ -->
+<section class="features">
+  <div class="sec-head"><h2>لماذا SportX؟</h2></div>
+  <div class="features-inner">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>تحليل احترافي</h3>
+        <p>يقوم فريقنا من المحللين المتخصصين بدراسة كل مباراة بعمق لتقديم أفضل التوقعات</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>تحديث يومي</h3>
+        <p>نوفر توقعات يومية محدثة لجميع الدوريات العالمية في كرة القدم وكرة السلة</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>نتائج موثقة</h3>
+        <p>سجل حافل بالفوز الموثق يثبت دقة توقعاتنا ونجاح استراتيجياتنا</p>
+      </div>
+    </div>
+    <!-- Character pose – hidden gracefully if image missing -->
+    <div class="features-char">
+      <img src="images/NO%20BG%20CHARACTER%20USE.png" alt=""
+           onerror="this.parentElement.style.display='none'" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA BAND ═══════════════════════════ -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <div class="cta-body">
+      <h2>لا تفوت أي مباراة!</h2>
+      <p>انضم إلى آلاف المشتركين الذين يثقون في توقعات SportX كل يوم</p>
+      <a href="#plans" class="btn-cta">اختر خطتك</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LATEST TIPS SLIDER ════════════════ -->
+<section class="latest-tip" id="tips">
+  <div class="sec-head"><h2>أحدث التوقعات</h2></div>
+
+  <div class="tips-slider-wrap">
+    <div class="tips-viewport">
+      <div class="tips-track" id="tipsTrack">
+        <!-- Populated by JS from PREDICTIONS data (latest 9) -->
+      </div>
+    </div>
+
+    <div class="tips-nav">
+      <button class="tips-nav-btn" id="tipsPrev" aria-label="السابق">&#8249;</button>
+      <div class="tips-dots" id="tipsDots"></div>
+      <button class="tips-nav-btn" id="tipsNext" aria-label="التالي">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ حين نتوقع، نُصيب ════════════════════ -->
+<section class="accuracy" id="winnings">
+  <div class="sec-head"><h2>حين نتوقع، نُصيب</h2></div>
+  <p class="acc-sub">لا نتكهن – نحلل. والأرقام تُثبت ذلك كل يوم</p>
+  <div class="acc-grid">
+
+    <div class="acc-card">
+      <div class="acc-card-header">
+        <span class="acc-icon">🎯</span>
+        <span class="acc-verified">✔ موثق</span>
+      </div>
+      <div class="acc-card-body">
+        <div class="acc-big">8<span class="acc-unit"> متتالية</span></div>
+        <div class="acc-label">توقعات صحيحة على التوالي</div>
+        <div class="acc-desc">آخر سلسلة نجاحات متواصلة لفريق SportX – لم نُخطئ مرة واحدة</div>
+        <span class="acc-tag">سلسلة نجاحات</span>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-card-header">
+        <span class="acc-icon">📊</span>
+        <span class="acc-verified">✔ موثق</span>
+      </div>
+      <div class="acc-card-body">
+        <div class="acc-big">87<span class="acc-unit">%</span></div>
+        <div class="acc-label">دقة تحليلية خلال 30 يوماً</div>
+        <div class="acc-desc">نسبة صحة التوقعات في الشهر الماضي عبر جميع الدوريات الكبرى</div>
+        <span class="acc-tag">الشهر الماضي</span>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-card-header">
+        <span class="acc-icon">⚡</span>
+        <span class="acc-verified">✔ موثق</span>
+      </div>
+      <div class="acc-card-body">
+        <div class="acc-big">10<span class="acc-unit">/10</span></div>
+        <div class="acc-label">توقعات آخر جولة أوروبية</div>
+        <div class="acc-desc">في آخر جولة من الدوريات الأوروبية أصبنا كل توقع بدقة كاملة</div>
+        <span class="acc-tag">آخر جولة</span>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-card-header">
+        <span class="acc-icon">🔥</span>
+        <span class="acc-verified">✔ موثق</span>
+      </div>
+      <div class="acc-card-body">
+        <div class="acc-big">3<span class="acc-unit"> أسابيع</span></div>
+        <div class="acc-label">بدون أي خطأ تحليلي</div>
+        <div class="acc-desc">3 أسابيع متواصلة من التوقعات الصحيحة في كرة القدم – من يتابعنا يعرف</div>
+        <span class="acc-tag">كرة القدم</span>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-card-header">
+        <span class="acc-icon">🏆</span>
+        <span class="acc-verified">✔ موثق</span>
+      </div>
+      <div class="acc-card-body">
+        <div class="acc-big">500<span class="acc-unit">+</span></div>
+        <div class="acc-label">توقع ناجح موثق منذ التأسيس</div>
+        <div class="acc-desc">أكثر من 500 توقع صحيح موثق منذ انطلاق SportX – ليس رقماً عشوائياً</div>
+        <span class="acc-tag">إجمالي</span>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-card-header">
+        <span class="acc-icon">⭐</span>
+        <span class="acc-verified">✔ موثق</span>
+      </div>
+      <div class="acc-card-body">
+        <div class="acc-big">92<span class="acc-unit">%</span></div>
+        <div class="acc-label">من مشتركينا يجددون اشتراكهم</div>
+        <div class="acc-desc">التحليل الدقيق يُثمر – الأغلبية الساحقة تواصل لأن النتائج تتكلم</div>
+        <span class="acc-tag">رضا المشتركين</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ PLANS ═════════════════════════════ -->
+<section class="plans" id="plans">
+  <div class="sec-head"><h2>خططنا</h2></div>
+  <div class="plans-grid">
+
+    <!-- Basketball Plan -->
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-icon">🏀</div>
+        <div class="plan-name">خطة كرة السلة</div>
+        <div class="plan-period">اشتراك شهري</div>
+      </div>
+      <div class="plan-price-area">
+        <div class="plan-price">
+          <span class="pp-amount">49</span>
+          <span class="pp-curr">$</span>
+          <span class="pp-per">/ شهر</span>
+        </div>
+      </div>
+      <div class="plan-feats">
+        <ul>
+          <li>توقعات يومية لكرة السلة</li>
+          <li>تحليل مباريات NBA</li>
+          <li>تحليل مباريات EuroLeague</li>
+          <li>تنبيهات فورية عبر التطبيق</li>
+          <li>دعم فني 7 أيام</li>
+        </ul>
+      </div>
+      <div class="plan-cta-area">
+        <a href="https://whop.com/checkout/plan_akPWRSofbWSgm" class="btn-plan" target="_blank">اشترك الآن</a>
+      </div>
+    </div>
+
+    <!-- Football Plan -->
+    <div class="plan-card featured">
+      <div class="plan-top">
+        <div class="plan-icon">⚽</div>
+        <div class="plan-name">خطة كرة القدم</div>
+        <div class="plan-period">اشتراك شهري</div>
+      </div>
+      <div class="plan-price-area">
+        <div class="plan-price">
+          <span class="pp-amount">120</span>
+          <span class="pp-curr">$</span>
+          <span class="pp-per">/ شهر</span>
+        </div>
+      </div>
+      <div class="plan-feats">
+        <ul>
+          <li>توقعات يومية لكرة القدم</li>
+          <li>تحليل جميع الدوريات الكبرى</li>
+          <li>دوري أبطال أوروبا والمونديال</li>
+          <li>تنبيهات فورية عبر التطبيق</li>
+          <li>دعم فني 24/7</li>
+        </ul>
+      </div>
+      <div class="plan-cta-area">
+        <a href="https://whop.com/checkout/plan_OXw8U2OEmO8yt" class="btn-plan" target="_blank">اشترك الآن</a>
+      </div>
+    </div>
+
+    <!-- VIP Plan -->
+    <div class="plan-card">
+      <div class="plan-top">
+        <div class="plan-icon">👑</div>
+        <div class="plan-name">خطة المحنكين</div>
+        <div class="plan-period">اشتراك شهري</div>
+      </div>
+      <div class="plan-price-area">
+        <div class="plan-price">
+          <span class="pp-amount">220</span>
+          <span class="pp-curr">$</span>
+          <span class="pp-per">/ شهر</span>
+        </div>
+      </div>
+      <div class="plan-feats">
+        <ul>
+          <li>جميع مميزات الخطتين السابقتين</li>
+          <li>وصول مباشر للمحللين</li>
+          <li>استشارات خاصة أسبوعية</li>
+          <li>تقارير مفصلة حصرية</li>
+          <li>أولوية في الدعم الفني</li>
+        </ul>
+      </div>
+      <div class="plan-cta-area">
+        <a href="https://whop.com/checkout/plan_TWx3waFHeBqt4" class="btn-plan" target="_blank">اشترك الآن</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ CATCHES / RESULTS ARCHIVE ═══════════ -->
+<section class="catches" id="catches">
+  <div class="sec-head"><h2>سجل النتائج</h2></div>
+  <p class="catches-head-sub">أرشيف كامل لتوقعاتنا الموثقة – الشفافية هي قوتنا</p>
+
+  <div class="catches-stats" id="catchesStats">
+    <!-- Filled by JS -->
+  </div>
+
+  <div class="catch-filters">
+    <button class="catch-filter-btn active" data-filter="all">الكل</button>
+    <button class="catch-filter-btn" data-filter="football">⚽ كرة القدم</button>
+    <button class="catch-filter-btn" data-filter="basketball">🏀 كرة السلة</button>
+  </div>
+
+  <div class="catch-table-wrap">
+    <table class="catch-table">
+      <thead>
+        <tr>
+          <th>التاريخ</th>
+          <th>المباراة</th>
+          <th>الدوري</th>
+          <th>توقعنا</th>
+          <th>المعامل</th>
+          <th>النتيجة</th>
+        </tr>
+      </thead>
+      <tbody id="catchesTbody">
+        <!-- Filled by JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="catches-pagination" id="catchesPagination"></div>
+</section>
+
+<!-- ═══════════════════ FAQ ════════════════════════════════ -->
+<section class="faq" id="faq">
+  <div class="sec-head"><h2>أسئلة وأجوبة</h2></div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>ماذا يعني "تحليل" في SportX؟</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>تحليلنا يعتمد على إحصاءات المباريات التاريخية، أداء الفريق، التشكيلة، والعوامل التكتيكية. نقدم رأياً مدروساً ومحللاً بعمق لكل مباراة، بعيداً عن التخمين.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>ما معنى "أقل من 2.5 هدف" في التوقعات؟</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>هذا يعني أننا نتوقع أن عدد الأهداف الكلي في المباراة لن يتجاوز هدفين. إذا انتهت المباراة بنتيجة 1-0 أو 1-1 أو 0-0 أو 2-0 فالتوقع صحيح. من أكثر أنواع التوقعات دقة في تحليلنا.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>ما معنى +1 / ‑1 في التوقعات؟</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>هذه توقعات الهانديكاب. +1 يعني أن الفريق يبدأ بهدف إضافي افتراضي لصالحه في التحليل. ‑1 يعني يجب أن يفوز الفريق بفارق هدفين على الأقل. نستخدم هذا النوع في المباريات غير المتكافئة للحصول على توقع أكثر دقة.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>كيف أستفيد من اشتراكي في SportX؟</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>بعد الاشتراك تحصل على توقعات يومية من محللينا المتخصصين، تنبيهات قبل المباريات مباشرة، وتحليلات مفصلة. معرفة ما سيحدث قبل أن يحدث – هذا ما يفعله فريقنا يومياً.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>ماذا نفعل تحديداً في SportX؟</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>SportX منصة تحليلات رياضية متخصصة. فريقنا من المحللين المحترفين يدرس المباريات ويقدم توقعات مدروسة يومياً لكرة القدم وكرة السلة. نزودك بأفضل التحليلات لتكون دائماً في الصورة.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+
+    <div>
+      <div class="fc-title">التنقل السريع</div>
+      <ul class="fc-list">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#winnings">حين نتوقع</a></li>
+        <li><a href="#plans">خططنا</a></li>
+        <li><a href="#tips">التوقعات</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="fc-title">جميع الخطط</div>
+      <ul class="fc-list">
+        <li><a href="#plans">خطة كرة السلة</a></li>
+        <li><a href="#plans">خطة كرة القدم</a></li>
+        <li><a href="#plans">خطة المحنكين</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="fc-title">معلومات</div>
+      <ul class="fc-list">
+        <li><a href="#catches">سجل النتائج</a></li>
+        <li><a href="#faq">سياسة الموقع</a></li>
+        <li><a href="#faq">اتصل بنا</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="fc-title">التواصل والدعم</div>
+      <button class="btn-wa"><span>💬</span> دعم واتساب</button>
+      <div class="footer-social-title">SportX على التواصل الاجتماعي</div>
+      <div class="foot-socials">
+        <div class="fsoc">✈️</div>
+        <div class="fsoc">📷</div>
+        <div class="fsoc">💬</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© جميع الحقوق محفوظة لموقع <span class="fb-brand">SportX</span> – تحليلات رياضية</span>
+    <span>2026 ©</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ════════════════════════════ -->
+<script>
+  /* ── Mobile Menu ── */
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileNav    = document.getElementById('mobileNav');
+
+  hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('is-open');
+    mobileNav.classList.toggle('open');
+  });
+
+  function closeMobileNav() {
+    hamburgerBtn.classList.remove('is-open');
+    mobileNav.classList.remove('open');
+  }
+
+  /* ── FAQ Toggle ── */
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── Navbar shrink on scroll ── */
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    navEl.style.padding = window.scrollY > 60 ? '6px 40px' : '10px 40px';
+  }, { passive: true });
+
+  /* ══════════════════════════════════════════════════════════════
+     PREDICTIONS DATA – single source of truth for slider + archive
+     Add new entries at the TOP (newest first) to keep the slider
+     showing the most recent 9 automatically.
+  ══════════════════════════════════════════════════════════════ */
+  let PREDICTIONS = [
+    {
+      date: '06/04/2026',
+      homeTeam: 'إيطاليا',           homeFlag: '🇮🇹',
+      awayTeam: 'إيرلندا الشمالية', awayFlag: '🇬🇧',
+      matchEn: 'Italy vs N. Ireland',
+      league: 'تصفيات دولية',
+      prediction: 'أقل من 2.5 هدف',
+      odds: '2.00', sport: 'football', result: 'won'
+    },
+    {
+      date: '05/04/2026',
+      homeTeam: 'تركيا',   homeFlag: '🇹🇷',
+      awayTeam: 'رومانيا', awayFlag: '🇷🇴',
+      matchEn: 'Turkey vs Romania',
+      league: 'دوري أمم أوروبا',
+      prediction: 'فوز تركيا',
+      odds: '1.50', sport: 'football', result: 'won'
+    },
+    {
+      date: '05/04/2026',
+      homeTeam: 'ريال مدريد ن', homeFlag: '👑',
+      awayTeam: 'برشلونة ن',   awayFlag: '🔵',
+      matchEn: 'R. Madrid W vs Barça W',
+      league: 'الليغا النسائية',
+      prediction: 'فوز برشلونة الشوط الأول',
+      odds: '1.70', sport: 'football', result: 'won'
+    },
+    {
+      date: '04/04/2026',
+      homeTeam: 'سويسرا', homeFlag: '🇨🇭',
+      awayTeam: 'ألمانيا', awayFlag: '🇩🇪',
+      matchEn: 'Switzerland vs Germany',
+      league: 'مباراة دولية',
+      prediction: 'أكثر من 2.5 هدف',
+      odds: '1.70', sport: 'football', result: 'won'
+    },
+    {
+      date: '04/04/2026',
+      homeTeam: 'ستوكبورت', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+      awayTeam: 'وايمبلدون', awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+      matchEn: 'Stockport vs Wimbledon',
+      league: 'الدوري الإنجليزي الثالث',
+      prediction: 'فوز ستوكبورت',
+      odds: '1.70', sport: 'football', result: 'won'
+    },
+    {
+      date: '03/04/2026',
+      homeTeam: 'بولندا', homeFlag: '🇵🇱',
+      awayTeam: 'ألبانيا', awayFlag: '🇦🇱',
+      matchEn: 'Poland vs Albania',
+      league: 'دوري أمم أوروبا',
+      prediction: 'فوز بولندا',
+      odds: '1.75', sport: 'football', result: 'won'
+    },
+    {
+      date: '02/04/2026',
+      homeTeam: 'بوسطن سيلتيكس', homeFlag: '🍀',
+      awayTeam: 'ميامي هيت',      awayFlag: '🔥',
+      matchEn: 'Celtics vs Heat',
+      league: 'NBA',
+      prediction: 'فوز سيلتيكس',
+      odds: '1.45', sport: 'basketball', result: 'won'
+    },
+    {
+      date: '02/04/2026',
+      homeTeam: 'برشلونة',   homeFlag: '🔵',
+      awayTeam: 'ريال مدريد', awayFlag: '👑',
+      matchEn: 'Barcelona vs Real Madrid',
+      league: 'الليغا الإسبانية',
+      prediction: 'كلا الفريقين يسجل',
+      odds: '1.65', sport: 'football', result: 'won'
+    },
+    {
+      date: '01/04/2026',
+      homeTeam: 'أرسنال',     homeFlag: '🔴',
+      awayTeam: 'ليستر سيتي', awayFlag: '🦊',
+      matchEn: 'Arsenal vs Leicester',
+      league: 'البريميرليغ',
+      prediction: 'فوز أرسنال بهدفين فأكثر',
+      odds: '1.90', sport: 'football', result: 'won'
+    },
+    {
+      date: '31/03/2026',
+      homeTeam: 'لوس أنجلوس ليكرز', homeFlag: '💜',
+      awayTeam: 'دنفر ناجتس',       awayFlag: '🏔️',
+      matchEn: 'Lakers vs Nuggets',
+      league: 'NBA',
+      prediction: 'أقل من 222.5 نقطة',
+      odds: '1.90', sport: 'basketball', result: 'lost'
+    },
+    {
+      date: '30/03/2026',
+      homeTeam: 'باريس سان جيرمان', homeFlag: '🇫🇷',
+      awayTeam: 'مارسيليا',          awayFlag: '🌊',
+      matchEn: 'PSG vs Marseille',
+      league: 'ليغ 1 الفرنسي',
+      prediction: 'فوز باريس',
+      odds: '1.60', sport: 'football', result: 'won'
+    },
+    {
+      date: '29/03/2026',
+      homeTeam: 'إنتر ميلان', homeFlag: '⚫',
+      awayTeam: 'يوفنتوس',   awayFlag: '⚪',
+      matchEn: 'Inter vs Juventus',
+      league: 'سيري آ الإيطالي',
+      prediction: 'أكثر من 2.5 هدف',
+      odds: '2.10', sport: 'football', result: 'won'
+    },
+    {
+      date: '28/03/2026',
+      homeTeam: 'غولدن ستيت ووريورز', homeFlag: '🌉',
+      awayTeam: 'فينيكس سانز',       awayFlag: '☀️',
+      matchEn: 'Warriors vs Suns',
+      league: 'NBA',
+      prediction: 'فوز ووريورز',
+      odds: '1.80', sport: 'basketball', result: 'won'
+    },
+    {
+      date: '27/03/2026',
+      homeTeam: 'بايرن ميونخ', homeFlag: '🇩🇪',
+      awayTeam: 'دورتموند',   awayFlag: '🟡',
+      matchEn: 'Bayern vs Dortmund',
+      league: 'البوندسليغا الألماني',
+      prediction: 'فوز بايرن',
+      odds: '1.55', sport: 'football', result: 'won'
+    },
+    {
+      date: '26/03/2026',
+      homeTeam: 'شيكاغو بولز',  homeFlag: '🐂',
+      awayTeam: 'ميلووكي باكس', awayFlag: '🦌',
+      matchEn: 'Bulls vs Bucks',
+      league: 'NBA',
+      prediction: 'فوز باكس',
+      odds: '1.55', sport: 'basketball', result: 'won'
+    }
+  ];
+
+  /* ── Slider card builder (callable on data update) ── */
+  function buildSliderCards() {
+    document.getElementById('tipsTrack').innerHTML = PREDICTIONS.slice(0, 9).map(p => `
+      <div class="tip-slide-card">
+        <div class="tsc-match">
+          <div class="tsc-team">
+            <div class="tsc-flag">${p.homeFlag}</div>
+            <span class="tsc-team-name">${p.homeTeam}</span>
+          </div>
+          <div class="tsc-mid">
+            <div class="tsc-league">${p.league || ''}</div>
+            <div class="tsc-vs">مكتملة</div>
+            <div class="tsc-time">${p.matchEn}</div>
+          </div>
+          <div class="tsc-team">
+            <div class="tsc-flag">${p.awayFlag}</div>
+            <span class="tsc-team-name">${p.awayTeam}</span>
+          </div>
+        </div>
+        <div class="tsc-body">
+          <div class="tsc-tip-label">توقعنا</div>
+          <div class="tsc-prediction">${p.prediction}</div>
+          <div class="tsc-odds-box">
+            <div class="tsc-odds-label">المعامل</div>
+            <div class="tsc-odds-val">${p.odds}</div>
+          </div>
+          <div class="tsc-sport-badge">${p.sport === 'football' ? '⚽ كرة القدم' : '🏀 كرة السلة'}</div>
+        </div>
+        ${p.result === 'won'
+          ? '<div class="won-stamp">فاز ✓</div>'
+          : '<div class="lost-stamp">خسر ✗</div>'}
+      </div>`).join('');
+    if (typeof sliderRefresh === 'function') sliderRefresh();
+  }
+
+  /* ── Tips Slider Nav (init once, reads cards dynamically) ── */
+  let sliderRefresh;
+  (function () {
+    const track   = document.getElementById('tipsTrack');
+    const prevBtn = document.getElementById('tipsPrev');
+    const nextBtn = document.getElementById('tipsNext');
+    const dotsEl  = document.getElementById('tipsDots');
+    let idx = 0;
+
+    const getCards   = () => Array.from(track.querySelectorAll('.tip-slide-card'));
+    const getVisible = () => window.innerWidth >= 900 ? 3 : window.innerWidth >= 580 ? 2 : 1;
+    const getMaxIdx  = () => Math.max(0, getCards().length - getVisible());
+
+    function buildDots() {
+      dotsEl.innerHTML = '';
+      for (let i = 0; i <= getMaxIdx(); i++) {
+        const btn = document.createElement('button');
+        btn.className = 'tips-dot' + (i === idx ? ' active' : '');
+        btn.setAttribute('aria-label', 'slide ' + (i + 1));
+        btn.addEventListener('click', () => { idx = i; update(); });
+        dotsEl.appendChild(btn);
+      }
+    }
+
+    function update() {
+      idx = Math.min(Math.max(idx, 0), getMaxIdx());
+      const gap     = 18;
+      const visible = getVisible();
+      const vpWidth = track.parentElement.offsetWidth;
+      const cardW   = (vpWidth - gap * (visible - 1)) / visible;
+      track.style.transform = `translateX(-${idx * (cardW + gap)}px)`;
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx >= getMaxIdx();
+      dotsEl.querySelectorAll('.tips-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === idx));
+    }
+
+    sliderRefresh = () => { idx = 0; buildDots(); update(); };
+
+    prevBtn.addEventListener('click', () => { idx--; update(); });
+    nextBtn.addEventListener('click', () => { idx++; update(); });
+
+    let touchStartX = 0;
+    track.parentElement.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    track.parentElement.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 45) { idx += diff > 0 ? 1 : -1; update(); }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => { buildDots(); update(); }, { passive: true });
+
+    buildSliderCards(); // initial build
+  })();
+
+  /* ── Catches Archive ── */
+  const catchesCtrl = (function () {
+    const tbody      = document.getElementById('catchesTbody');
+    const statsEl    = document.getElementById('catchesStats');
+    const pagination = document.getElementById('catchesPagination');
+    const filterBtns = document.querySelectorAll('.catch-filter-btn');
+    const PER_PAGE   = 8;
+    let filter = 'all', page = 1;
+
+    const getFiltered = () => filter === 'all'
+      ? PREDICTIONS
+      : PREDICTIONS.filter(p => p.sport === filter);
+
+    function renderStats() {
+      const all  = PREDICTIONS.length;
+      const wins = PREDICTIONS.filter(p => p.result === 'won').length;
+      const pct  = Math.round((wins / all) * 100);
+      statsEl.innerHTML = `
+        <div class="catch-stat"><div class="catch-stat-val">${all}</div><div class="catch-stat-lbl">إجمالي التوقعات</div></div>
+        <div class="catch-stat"><div class="catch-stat-val">${wins}</div><div class="catch-stat-lbl">توقعات ناجحة</div></div>
+        <div class="catch-stat"><div class="catch-stat-val">${pct}%</div><div class="catch-stat-lbl">نسبة الدقة</div></div>`;
+    }
+
+    function renderTable() {
+      const data  = getFiltered();
+      const total = Math.ceil(data.length / PER_PAGE);
+      page = Math.min(page, total || 1);
+      tbody.innerHTML = data.slice((page - 1) * PER_PAGE, page * PER_PAGE).map(p => `
+        <tr>
+          <td class="catch-date">${p.date}</td>
+          <td>
+            <div class="catch-match-cell">
+              <div class="catch-flags">${p.homeFlag} ${p.awayFlag}</div>
+              <div class="catch-match-names">
+                <div class="catch-match-name">${p.homeTeam} vs ${p.awayTeam}</div>
+                <div class="catch-match-en">${p.matchEn}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="catch-league-badge">${p.league || '–'}</span></td>
+          <td class="catch-prediction">${p.prediction}</td>
+          <td class="catch-odds">${p.odds}</td>
+          <td>${p.result === 'won'
+            ? '<span class="catch-result-won">✓ فاز</span>'
+            : '<span class="catch-result-lost">✗ خسر</span>'}</td>
+        </tr>`).join('');
+
+      pagination.innerHTML = '';
+      if (total <= 1) return;
+      for (let i = 1; i <= total; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'catch-page-btn' + (i === page ? ' active' : '');
+        btn.textContent = i;
+        btn.addEventListener('click', () => {
+          page = i; renderTable();
+          document.getElementById('catches').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        pagination.appendChild(btn);
+      }
+    }
+
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filter = btn.dataset.filter; page = 1; renderTable();
+    }));
+
+    function refresh() { renderStats(); page = 1; renderTable(); }
+    refresh();
+    return { refresh };
+  })();
+
+  /* ── Live data: fetch from /api/catches, hot-swap PREDICTIONS ── */
+  fetch('/api/catches', { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      if (!Array.isArray(data) || data.length === 0) return;
+      PREDICTIONS = data;
+      buildSliderCards();
+      catchesCtrl.refresh();
+    })
+    .catch(() => { /* network unavailable – static fallback stays */ });
+</script>
+
+</body>
+</html>
