@@ -449,8 +449,8 @@
     /* ─── PLANS ─────────────────────────────────────────────────── */
     .plans { padding: 80px 60px; background: var(--bg2); }
     .plans-grid {
-      display: grid; grid-template-columns: 1fr;
-      max-width: 420px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 24px; max-width: 860px; margin: 0 auto;
     }
     .plan-card {
       background: var(--bg3); border-radius: 22px; overflow: hidden;
@@ -755,6 +755,86 @@
     @media(max-width:360px){
       .catch-stat-val { font-size: 26px; }
     }
+
+    /* ─── FREE TELEGRAM BANNER ─────────────────────────────────── */
+    .tg-banner {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 60px 40px; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      position: relative; overflow: hidden;
+    }
+    .tg-banner::before {
+      content: '✈️'; font-size: 200px; position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      opacity: 0.03; pointer-events: none;
+    }
+    .tg-banner-label {
+      display: inline-block; background: rgba(36,161,222,0.15);
+      border: 1px solid rgba(36,161,222,0.4);
+      color: #24a1de; border-radius: 20px;
+      padding: 4px 14px; font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .tg-banner h3 {
+      font-size: 28px; font-weight: 900; color: #fff;
+      margin-bottom: 10px; line-height: 1.4;
+    }
+    .tg-banner h3 span { color: #24a1de; }
+    .tg-banner p { color: var(--gray); font-size: 15px; margin-bottom: 28px; }
+    .btn-tg {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #24a1de; color: #fff;
+      border-radius: 50px; padding: 14px 32px;
+      font-size: 16px; font-weight: 900;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+      box-shadow: 0 4px 20px rgba(36,161,222,0.3);
+    }
+    .btn-tg:hover { background: #1a8bc4; transform: translateY(-2px); }
+    .tg-members {
+      margin-top: 18px; color: var(--gray); font-size: 13px;
+    }
+    .tg-members span { color: #24a1de; font-weight: 700; }
+
+    /* ─── EXPERTS ───────────────────────────────────────────────── */
+    .experts { padding: 80px 60px; background: var(--bg); }
+    .experts-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1100px; margin: 40px auto 0;
+    }
+    .expert-card {
+      background: var(--bg3); border-radius: 20px;
+      border: 1px solid var(--gold-dim);
+      padding: 28px 24px; text-align: center;
+      transition: transform .3s, border-color .3s;
+    }
+    .expert-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .expert-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 16px;
+      border: 2px solid var(--gold-dim);
+    }
+    .expert-name { font-size: 17px; font-weight: 900; color: var(--gold); margin-bottom: 4px; }
+    .expert-title { font-size: 12px; color: var(--purple); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .expert-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+    .expert-leagues { margin-top: 12px; display: flex; flex-wrap: wrap;
+      gap: 6px; justify-content: center; }
+    .expert-league {
+      background: var(--bg2); border: 1px solid var(--gold-dim);
+      border-radius: 20px; padding: 3px 10px;
+      font-size: 11px; color: var(--gray);
+    }
+    @media(max-width:900px){
+      .experts { padding: 50px 20px; }
+      .experts-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:580px){
+      .experts-grid { grid-template-columns: 1fr; max-width: 360px; margin-inline: auto; }
+    }
   </style>
 </head>
 <body>
@@ -988,43 +1068,190 @@
   </div>
 </section>
 
+<!-- ═══════════════════ EXPERTS ══════════════════════════ -->
+<section class="experts" id="experts">
+  <div class="sec-head"><h2>فريق المحللين</h2></div>
+  <p style="text-align:center;color:var(--gray);margin-top:-20px;font-size:15px;">خبراء من أرقى الدوريات العالمية — يعملون خلف كل توقع</p>
+  <div class="experts-grid">
+
+    <div class="expert-card">
+      <div class="expert-avatar">⚽</div>
+      <div class="expert-name">Carlos Mendez</div>
+      <div class="expert-title">محلل تكتيكي</div>
+      <div class="expert-desc">12 سنة في تحليل الدوري الإسباني. متخصص في أنماط اللعب والتشكيلات التكتيكية لكبار الأندية.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">LaLiga</span>
+        <span class="expert-league">Champions League</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">📊</div>
+      <div class="expert-name">Marco Ricci</div>
+      <div class="expert-title">محلل إحصائي</div>
+      <div class="expert-desc">خبير في الإحصاءات المتقدمة والبيانات الرقمية. يحوّل الأرقام إلى توقعات دقيقة.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">Serie A</span>
+        <span class="expert-league">Europa League</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">🏆</div>
+      <div class="expert-name">James Harrison</div>
+      <div class="expert-title">محلل الدوري الإنجليزي</div>
+      <div class="expert-desc">متابع حصري للبريميرليغ منذ 2008. يفهم الضغط النفسي والعوامل الخفية خارج الملعب.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">Premier League</span>
+        <span class="expert-league">Championship</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">🎯</div>
+      <div class="expert-name">عمر الراشدي</div>
+      <div class="expert-title">محلل البطولات الأوروبية</div>
+      <div class="expert-desc">10 سنوات في تحليل البطولات القارية. متخصص في مراحل الأدوار الإقصائية والمباريات الحاسمة.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">Champions League</span>
+        <span class="expert-league">Europa League</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">⚡</div>
+      <div class="expert-name">Pablo Fernandez</div>
+      <div class="expert-title">متخصص المباريات الدولية</div>
+      <div class="expert-desc">محلل المنتخبات الوطنية وبطولات القارات. يغطي كأس العالم والتصفيات الدولية بعمق.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">World Cup</span>
+        <span class="expert-league">Nations League</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">🔥</div>
+      <div class="expert-name">Luca Conti</div>
+      <div class="expert-title">محلل الأداء</div>
+      <div class="expert-desc">متخصص في تحليل أداء الفرق على مدار الموسم وقراءة الاتجاهات قبل أن تظهر للعيان.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">Serie A</span>
+        <span class="expert-league">Bundesliga</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">🌟</div>
+      <div class="expert-name">أحمد خليل</div>
+      <div class="expert-title">محلل الدوريات العربية</div>
+      <div class="expert-desc">خبير الدوريات العربية والإفريقية. يربط بين المتابعة الميدانية والتحليل الرقمي.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">Arab Leagues</span>
+        <span class="expert-league">African Cup</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">📈</div>
+      <div class="expert-name">David Thompson</div>
+      <div class="expert-title">محلل البيانات الضخمة</div>
+      <div class="expert-desc">يستخدم نماذج رياضية وخوارزميات متقدمة لاستخراج أفضل الفرص من آلاف المباريات.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">Premier League</span>
+        <span class="expert-league">Ligue 1</span>
+      </div>
+    </div>
+
+    <div class="expert-card">
+      <div class="expert-avatar">👑</div>
+      <div class="expert-name">Rafael Torres</div>
+      <div class="expert-title">كبير المحللين</div>
+      <div class="expert-desc">15 سنة خبرة. قاد فرق تحليل في أكثر من 4 دول. يشرف على جودة كل توقع يصدر من SportX.</div>
+      <div class="expert-leagues">
+        <span class="expert-league">All Leagues</span>
+        <span class="expert-league">Head Analyst</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════════════ PLANS ═════════════════════════════ -->
 <section class="plans" id="plans">
-  <div class="sec-head"><h2>الخطة الاحترافية</h2></div>
-  <p style="text-align:center;color:var(--gray);margin-top:-20px;margin-bottom:40px;font-size:15px;">كل ما تحتاجه في خطة واحدة</p>
+  <div class="sec-head"><h2>اختر خطتك</h2></div>
+  <p style="text-align:center;color:var(--gray);margin-top:-20px;margin-bottom:40px;font-size:15px;">جرّب أسبوعاً أو التزم بالشهر — النتائج تتكلم</p>
   <div class="plans-grid">
 
-    <!-- Single Premium Plan -->
-    <div class="plan-card featured">
+    <!-- Weekly Plan -->
+    <div class="plan-card">
       <div class="plan-top">
-        <div class="plan-icon">⚽</div>
-        <div class="plan-name">SportX Pro</div>
-        <div class="plan-period">اشتراك شهري</div>
+        <div class="plan-icon">⚡</div>
+        <div class="plan-name">الخطة الأسبوعية</div>
+        <div class="plan-period">اشتراك أسبوعي</div>
       </div>
       <div class="plan-price-area">
         <div class="plan-price">
-          <span class="pp-amount">180</span>
+          <span class="pp-amount">49.99</span>
           <span class="pp-curr">$</span>
-          <span class="pp-per">/ شهر</span>
+          <span class="pp-per">/ أسبوع</span>
         </div>
       </div>
       <div class="plan-feats">
         <ul>
           <li>توقعات يومية لجميع الدوريات الكبرى</li>
           <li>دوري أبطال أوروبا والدوري الأوروبي</li>
-          <li>البريميرليغ، الليغا، السيري آ، البوندسليغا</li>
           <li>تحليل مفصل لكل مباراة</li>
           <li>تنبيهات فورية قبل المباريات</li>
           <li>دعم مباشر 24/7</li>
         </ul>
       </div>
       <div class="plan-cta-area">
-        <a href="https://whop.com/sportxpro/c39c44b0-9936-4702-abfb-01bf07c5d5b6/" class="btn-plan" target="_blank">اشترك الآن</a>
+        <a href="https://whop.com/checkout/plan_I2HFdihkjiCcN" class="btn-plan" target="_blank">ابدأ الأسبوع</a>
+      </div>
+    </div>
+
+    <!-- Monthly Plan -->
+    <div class="plan-card featured">
+      <div class="plan-top">
+        <div class="plan-icon">👑</div>
+        <div class="plan-name">الخطة الشهرية</div>
+        <div class="plan-period">اشتراك شهري</div>
+      </div>
+      <div class="plan-price-area">
+        <div class="plan-price">
+          <span class="pp-amount">149.99</span>
+          <span class="pp-curr">$</span>
+          <span class="pp-per">/ شهر</span>
+        </div>
+        <div style="font-size:12px;color:#4caf50;margin-top:6px;font-weight:700;">توفير 25% مقارنة بالأسبوعية 🔥</div>
+      </div>
+      <div class="plan-feats">
+        <ul>
+          <li>كل مميزات الخطة الأسبوعية</li>
+          <li>البريميرليغ، الليغا، السيري آ، البوندسليغا</li>
+          <li>تحليل مفصل لكل مباراة</li>
+          <li>تنبيهات فورية قبل المباريات</li>
+          <li>أولوية في الدعم المباشر 24/7</li>
+        </ul>
+      </div>
+      <div class="plan-cta-area">
+        <a href="https://whop.com/checkout/plan_OXw8U2OEmO8yt" class="btn-plan" target="_blank">اشترك الآن</a>
       </div>
     </div>
 
   </div>
 </section>
+
+<!-- ═══════════════════ FREE TELEGRAM BANNER ════════════════ -->
+<div class="tg-banner">
+  <div class="tg-banner-label">✈️ مجاني 100%</div>
+  <h3>لست مستعداً للاشتراك؟<br><span>جرّب توقعاتنا مجاناً أولاً</span></h3>
+  <p>انضم لمجموعتنا المجانية على تيليغرام وشاهد جودة تحليلاتنا بنفسك — بدون أي التزام</p>
+  <a href="https://t.me/+nhxhyPIhzOZhMTM5" target="_blank" class="btn-tg">
+    <span>✈️</span> انضم للمجموعة المجانية
+  </a>
+  <div class="tg-members">انضم إلى <span>المجتمع</span> واتخذ قرارك بثقة</div>
+</div>
 
 <!-- ═══════════════════ CATCHES / RESULTS ARCHIVE ═══════════ -->
 <section class="catches" id="catches">
@@ -1236,255 +1463,4 @@
       league: 'مباراة دولية',
       prediction: 'أكثر من 2.5 هدف',
       odds: '1.70', sport: 'football', result: 'won'
-    },
-    {
-      date: '04/04/2026',
-      homeTeam: 'ستوكبورت', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      awayTeam: 'وايمبلدون', awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      matchEn: 'Stockport vs Wimbledon',
-      league: 'الدوري الإنجليزي الثالث',
-      prediction: 'فوز ستوكبورت',
-      odds: '1.70', sport: 'football', result: 'won'
-    },
-    {
-      date: '03/04/2026',
-      homeTeam: 'بولندا', homeFlag: '🇵🇱',
-      awayTeam: 'ألبانيا', awayFlag: '🇦🇱',
-      matchEn: 'Poland vs Albania',
-      league: 'دوري أمم أوروبا',
-      prediction: 'فوز بولندا',
-      odds: '1.75', sport: 'football', result: 'won'
-    },
-    {
-      date: '02/04/2026',
-      homeTeam: 'برشلونة',   homeFlag: '🔵',
-      awayTeam: 'ريال مدريد', awayFlag: '👑',
-      matchEn: 'Barcelona vs Real Madrid',
-      league: 'الليغا الإسبانية',
-      prediction: 'كلا الفريقين يسجل',
-      odds: '1.65', sport: 'football', result: 'won'
-    },
-    {
-      date: '01/04/2026',
-      homeTeam: 'أرسنال',     homeFlag: '🔴',
-      awayTeam: 'ليستر سيتي', awayFlag: '🦊',
-      matchEn: 'Arsenal vs Leicester',
-      league: 'البريميرليغ',
-      prediction: 'فوز أرسنال بهدفين فأكثر',
-      odds: '1.90', sport: 'football', result: 'won'
-    },
-    {
-      date: '30/03/2026',
-      homeTeam: 'باريس سان جيرمان', homeFlag: '🇫🇷',
-      awayTeam: 'مارسيليا',          awayFlag: '🌊',
-      matchEn: 'PSG vs Marseille',
-      league: 'ليغ 1 الفرنسي',
-      prediction: 'فوز باريس',
-      odds: '1.60', sport: 'football', result: 'won'
-    },
-    {
-      date: '29/03/2026',
-      homeTeam: 'إنتر ميلان', homeFlag: '⚫',
-      awayTeam: 'يوفنتوس',   awayFlag: '⚪',
-      matchEn: 'Inter vs Juventus',
-      league: 'سيري آ الإيطالي',
-      prediction: 'أكثر من 2.5 هدف',
-      odds: '2.10', sport: 'football', result: 'won'
-    },
-    {
-      date: '27/03/2026',
-      homeTeam: 'بايرن ميونخ', homeFlag: '🇩🇪',
-      awayTeam: 'دورتموند',   awayFlag: '🟡',
-      matchEn: 'Bayern vs Dortmund',
-      league: 'البوندسليغا الألماني',
-      prediction: 'فوز بايرن',
-      odds: '1.55', sport: 'football', result: 'won'
-    },
-    {
-      date: '26/03/2026',
-      homeTeam: 'بايرن ميونخ', homeFlag: '🇩🇪',
-      awayTeam: 'لايبزيغ',     awayFlag: '🔴',
-      matchEn: 'Bayern vs Leipzig',
-      league: 'البوندسليغا الألماني',
-      prediction: 'فوز بايرن',
-      odds: '1.55', sport: 'football', result: 'won'
     }
-  ];
-
-  /* ── Slider card builder (callable on data update) ── */
-  function buildSliderCards() {
-    document.getElementById('tipsTrack').innerHTML = PREDICTIONS.slice(0, 9).map(p => `
-      <div class="tip-slide-card">
-        <div class="tsc-match">
-          <div class="tsc-team">
-            <div class="tsc-flag">${p.homeFlag}</div>
-            <span class="tsc-team-name">${p.homeTeam}</span>
-          </div>
-          <div class="tsc-mid">
-            <div class="tsc-league">${p.league || ''}</div>
-            <div class="tsc-vs">مكتملة</div>
-            <div class="tsc-time">${p.matchEn}</div>
-          </div>
-          <div class="tsc-team">
-            <div class="tsc-flag">${p.awayFlag}</div>
-            <span class="tsc-team-name">${p.awayTeam}</span>
-          </div>
-        </div>
-        <div class="tsc-body">
-          <div class="tsc-tip-label">توقعنا</div>
-          <div class="tsc-prediction">${p.prediction}</div>
-          <div class="tsc-odds-box">
-            <div class="tsc-odds-label">المعامل</div>
-            <div class="tsc-odds-val">${p.odds}</div>
-          </div>
-          <div class="tsc-sport-badge">⚽ كرة القدم</div>
-        </div>
-        ${p.result === 'won'
-          ? '<div class="won-stamp">فاز ✓</div>'
-          : '<div class="lost-stamp">خسر ✗</div>'}
-      </div>`).join('');
-    if (typeof sliderRefresh === 'function') sliderRefresh();
-  }
-
-  /* ── Tips Slider Nav (init once, reads cards dynamically) ── */
-  let sliderRefresh;
-  (function () {
-    const track   = document.getElementById('tipsTrack');
-    const prevBtn = document.getElementById('tipsPrev');
-    const nextBtn = document.getElementById('tipsNext');
-    const dotsEl  = document.getElementById('tipsDots');
-    let idx = 0;
-
-    const getCards   = () => Array.from(track.querySelectorAll('.tip-slide-card'));
-    const getVisible = () => window.innerWidth >= 900 ? 3 : window.innerWidth >= 580 ? 2 : 1;
-    const getMaxIdx  = () => Math.max(0, getCards().length - getVisible());
-
-    function buildDots() {
-      dotsEl.innerHTML = '';
-      for (let i = 0; i <= getMaxIdx(); i++) {
-        const btn = document.createElement('button');
-        btn.className = 'tips-dot' + (i === idx ? ' active' : '');
-        btn.setAttribute('aria-label', 'slide ' + (i + 1));
-        btn.addEventListener('click', () => { idx = i; update(); });
-        dotsEl.appendChild(btn);
-      }
-    }
-
-    function update() {
-      idx = Math.min(Math.max(idx, 0), getMaxIdx());
-      const gap     = 18;
-      const visible = getVisible();
-      const vpWidth = track.parentElement.offsetWidth;
-      const cardW   = (vpWidth - gap * (visible - 1)) / visible;
-      track.style.transform = `translateX(-${idx * (cardW + gap)}px)`;
-      prevBtn.disabled = idx === 0;
-      nextBtn.disabled = idx >= getMaxIdx();
-      dotsEl.querySelectorAll('.tips-dot').forEach((d, i) =>
-        d.classList.toggle('active', i === idx));
-    }
-
-    sliderRefresh = () => { idx = 0; buildDots(); update(); };
-
-    prevBtn.addEventListener('click', () => { idx--; update(); });
-    nextBtn.addEventListener('click', () => { idx++; update(); });
-
-    let touchStartX = 0;
-    track.parentElement.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].clientX;
-    }, { passive: true });
-    track.parentElement.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 45) { idx += diff > 0 ? 1 : -1; update(); }
-    }, { passive: true });
-
-    window.addEventListener('resize', () => { buildDots(); update(); }, { passive: true });
-
-    buildSliderCards(); // initial build
-  })();
-
-  /* ── Catches Archive ── */
-  const catchesCtrl = (function () {
-    const tbody      = document.getElementById('catchesTbody');
-    const statsEl    = document.getElementById('catchesStats');
-    const pagination = document.getElementById('catchesPagination');
-    const filterBtns = document.querySelectorAll('.catch-filter-btn');
-    const PER_PAGE   = 8;
-    let filter = 'all', page = 1;
-
-    const getFiltered = () => filter === 'all'
-      ? PREDICTIONS
-      : PREDICTIONS.filter(p => p.sport === filter);
-
-    function renderStats() {
-      const all  = PREDICTIONS.length;
-      const wins = PREDICTIONS.filter(p => p.result === 'won').length;
-      const pct  = Math.round((wins / all) * 100);
-      statsEl.innerHTML = `
-        <div class="catch-stat"><div class="catch-stat-val">${all}</div><div class="catch-stat-lbl">إجمالي التوقعات</div></div>
-        <div class="catch-stat"><div class="catch-stat-val">${wins}</div><div class="catch-stat-lbl">توقعات ناجحة</div></div>
-        <div class="catch-stat"><div class="catch-stat-val">${pct}%</div><div class="catch-stat-lbl">نسبة الدقة</div></div>`;
-    }
-
-    function renderTable() {
-      const data  = getFiltered();
-      const total = Math.ceil(data.length / PER_PAGE);
-      page = Math.min(page, total || 1);
-      tbody.innerHTML = data.slice((page - 1) * PER_PAGE, page * PER_PAGE).map(p => `
-        <tr>
-          <td class="catch-date">${p.date}</td>
-          <td>
-            <div class="catch-match-cell">
-              <div class="catch-flags">${p.homeFlag} ${p.awayFlag}</div>
-              <div class="catch-match-names">
-                <div class="catch-match-name">${p.homeTeam} vs ${p.awayTeam}</div>
-                <div class="catch-match-en">${p.matchEn}</div>
-              </div>
-            </div>
-          </td>
-          <td><span class="catch-league-badge">${p.league || '–'}</span></td>
-          <td class="catch-prediction">${p.prediction}</td>
-          <td class="catch-odds">${p.odds}</td>
-          <td>${p.result === 'won'
-            ? '<span class="catch-result-won">✓ فاز</span>'
-            : '<span class="catch-result-lost">✗ خسر</span>'}</td>
-        </tr>`).join('');
-
-      pagination.innerHTML = '';
-      if (total <= 1) return;
-      for (let i = 1; i <= total; i++) {
-        const btn = document.createElement('button');
-        btn.className = 'catch-page-btn' + (i === page ? ' active' : '');
-        btn.textContent = i;
-        btn.addEventListener('click', () => {
-          page = i; renderTable();
-          document.getElementById('catches').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-        pagination.appendChild(btn);
-      }
-    }
-
-    filterBtns.forEach(btn => btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filter = btn.dataset.filter; page = 1; renderTable();
-    }));
-
-    function refresh() { renderStats(); page = 1; renderTable(); }
-    refresh();
-    return { refresh };
-  })();
-
-  /* ── Live data: fetch from /api/catches, hot-swap PREDICTIONS ── */
-  fetch('/api/catches', { cache: 'no-store' })
-    .then(r => r.ok ? r.json() : Promise.reject(r.status))
-    .then(data => {
-      if (!Array.isArray(data) || data.length === 0) return;
-      PREDICTIONS = data;
-      buildSliderCards();
-      catchesCtrl.refresh();
-    })
-    .catch(() => { /* network unavailable – static fallback stays */ });
-</script>
-
-</body>
-</html>
